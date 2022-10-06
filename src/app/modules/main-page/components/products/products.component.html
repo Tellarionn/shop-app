@@ -1,0 +1,66 @@
+<mat-progress-bar
+  *ngIf="progressBar"
+  color="accent"
+  mode="indeterminate"
+></mat-progress-bar>
+
+<div class="input-wrapper">
+  <div class="input-bg">
+    <img
+      src="assets/imgs/loupe.png"
+      width="27px"
+      height="27px"
+      alt="Search icon"
+    />
+    <input
+      class="filterInput"
+      type="text"
+      placeholder="Search Products"
+      [(ngModel)]="term"
+    />
+  </div>
+</div>
+
+<div class="wrapper" *ngIf="productsList | async as products">
+  <div
+    class="products-wrapper"
+    *ngFor="let product of products | filterProducts: term"
+  >
+    <div class="products-header">
+      <img
+        [routerLink]="['product', product.id]"
+        src="{{ product.image }}"
+        height="130px"
+        width="130px"
+        alt=""
+      />
+      <h4 [routerLink]="['product', product.id]">
+        {{ product.title }}
+      </h4>
+    </div>
+
+    <div class="products-footer">
+      <p>{{ product.price | currency }}</p>
+      <button
+        *ngIf="!itemInCart(product)"
+        mat-raised-button
+        (click)="addToCart(product)"
+      >
+        Add to cart
+      </button>
+      <button *ngIf="itemInCart(product)" mat-raised-button disabled>
+        <img
+          src="assets/imgs/check-mark.png"
+          width="17px"
+          height="17px"
+          alt="Check Mark"
+        />
+        In cart
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="btn-wrapper" *ngIf="hideBtn">
+  <button mat-raised-button (click)="showMore()">Show More</button>
+</div>

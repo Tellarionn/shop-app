@@ -1,0 +1,54 @@
+<div class="cart-wrapper">
+  <div class="cart-item" *ngFor="let item of items | async">
+    <div class="img-wrapper">
+      <img
+        src="{{ item.image }}"
+        width="150px"
+        height="150px"
+        alt="Item Image"
+      />
+      <p>{{ item.title }}</p>
+    </div>
+    <div class="counter-wrapper">
+      <div class="counter">
+        <button (click)="decrement(item)">
+          <img src="assets/imgs/minus.png" width="22px" height="22px" alt="" />
+        </button>
+        <div class="counter-value">
+          <span> {{ item.qty }}</span>
+        </div>
+        <button (click)="increment(item)">
+          <img src="assets/imgs/plus.png" width="22px" height="22px" alt="" />
+        </button>
+      </div>
+    </div>
+    <div class="subtotal-wrapper">
+      <span class="sub-total">{{ getSubTotal(item) | currency }}</span>
+    </div>
+    <div class="remove-btn-wrapper">
+      <img
+        src="assets/imgs/trash-icon.png"
+        alt="trash-icon"
+        class="remove-btn"
+        (click)="removeFromCart(item)"
+      />
+    </div>
+  </div>
+  <div class="empty-cart" *ngIf="!(isCartEmpty | async)">
+    <img src="assets/imgs/cart.png" alt="Empty cart" />
+    <h1>Oops...Your cart is empty!</h1>
+    <h3>Looks like you haven't added anything to your cart yet</h3>
+    <button mat-raised-button routerLink="../products">Shop now</button>
+  </div>
+  <div class="order-wrapper" *ngIf="isCartEmpty | async">
+    <h2>Total Order {{ total | currency }}</h2>
+    <button mat-raised-button (click)="modalService.open()">Buy</button>
+    <button mat-raised-button (click)="clearCart()">Clear cart</button>
+  </div>
+</div>
+
+<app-modal
+  [randomOrderNumber]="randomOrderNumber"
+  [total]="total"
+  *ngIf="modalService.isVisible$ | async"
+></app-modal>

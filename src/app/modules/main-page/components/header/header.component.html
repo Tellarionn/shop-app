@@ -1,0 +1,49 @@
+<mat-toolbar>
+  <img
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6ypvWIqhLICPpIKyGlA_5z1Ev5I7n-IEWGg&usqp=CAU"
+    height="50px"
+    width="150px"
+    alt="Shop-logo"
+    routerLink="./home"
+  />
+
+  <div class="hamburger-menu">
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+
+    <ul class="menu__box">
+      <li><a class="menu__item" routerLink="./home">Home</a></li>
+      <li><a class="menu__item" routerLink="./products">Products</a></li>
+      <li><a class="menu__item" routerLink="./cart">Cart</a></li>
+      <li><a class="menu__item" (click)="logout()">Logout</a></li>
+    </ul>
+  </div>
+
+  <div class="navigate-btn-wrapper">
+    <button
+      class="custom-btn btn-10"
+      routerLink="./home"
+      routerLinkActive="active"
+    >
+      HOME
+    </button>
+    <button
+      class="custom-btn btn-10"
+      routerLink="./products"
+      routerLinkActive="active"
+    >
+      PRODUCTS
+    </button>
+    <button
+      class="custom-btn btn-10"
+      routerLink="./cart"
+      routerLinkActive="active"
+    >
+      CART
+    </button>
+  </div>
+
+  <button class="custom-btn btn-15 logoutBtn" (click)="logout()">LOGOUT</button>
+</mat-toolbar>

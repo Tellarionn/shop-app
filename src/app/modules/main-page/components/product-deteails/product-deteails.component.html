@@ -1,0 +1,50 @@
+<mat-progress-bar
+  *ngIf="progressBar"
+  color="accent"
+  mode="indeterminate"
+></mat-progress-bar>
+<div class="wrapper" *ngIf="product | async as product">
+  <div class="img-wrapper">
+    <img src="{{ product.image }}" width="400px" height="400px" alt="" />
+    <b>Rate: {{ product.rating.rate }}</b>
+  </div>
+  <div class="product-info-wrapper">
+    <div>
+      <h1>{{ product.title }}</h1>
+      <p>
+        <b class="check-mark">✓</b> in stock {{ product.rating.count }} pieces
+      </p>
+      <b> Category:</b> {{ product.category | titlecase }}
+    </div>
+    <div>
+      <p><b> Description:</b> {{ product.description }}</p>
+    </div>
+    <div>
+      <b>Price: {{ product.price * counter | currency }}</b>
+      <div class="buy-wrapper">
+        <button
+          mat-raised-button
+          class="buy-btn"
+          *ngIf="!itemInCart(product)"
+          (click)="addToCart(product)"
+        >
+          Buy
+        </button>
+        <button
+          mat-raised-button
+          class="buy-btn"
+          *ngIf="itemInCart(product)"
+          disabled
+        >
+          <img
+            src="assets/imgs/check-mark.png"
+            width="17px"
+            height="17px"
+            alt="Check Mark"
+          />
+          In cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

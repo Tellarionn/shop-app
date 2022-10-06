@@ -1,0 +1,319 @@
+.cart-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  height: 200px;
+  background-color: white;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 5%;
+}
+
+.img-wrapper {
+  display: flex;
+  width: 400px;
+  height: 90%;
+  p {
+    max-width: 180px;
+    margin-left: 12px;
+  }
+}
+
+.counter-wrapper {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.subtotal-wrapper {
+  display: flex;
+  align-items: flex-end;
+  height: 95%;
+}
+
+.sub-total {
+  width: 80px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 110px;
+}
+
+.counter-value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 40px;
+  border: 2px solid #e8e8e8;
+  border-radius: 5%;
+}
+
+.counter button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  img {
+    cursor: pointer;
+  }
+}
+
+.counter span {
+  font-size: 17px;
+}
+
+.remove-btn-wrapper {
+  display: flex;
+  align-items: flex-start;
+  height: 95%;
+}
+
+.remove-btn {
+  cursor: pointer;
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-cart img {
+  height: 400px;
+  width: 400px;
+}
+
+.order-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 100px;
+  background-color: white;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 5%;
+  h2 {
+    margin-bottom: 0;
+  }
+  h2,
+  button {
+    margin: 0 20px;
+  }
+}
+
+//MEDIA QUERIES
+
+@media only screen and (max-width: 1024px) {
+  .cart-item {
+    width: 60%;
+  }
+  .order-wrapper {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cart-wrapper {
+    margin-top: 70px;
+  }
+
+  .cart-item {
+    width: 70%;
+    margin: 10px 0;
+  }
+
+  .order-wrapper {
+    width: 70%;
+  }
+
+  .img-wrapper img {
+    height: 100px;
+    width: 100px;
+  }
+
+  p {
+    font: 400 12px / 14px Roboto, "Helvetica Neue", sans-serif !important;
+  }
+
+  .subtotal-wrapper {
+    width: 12%;
+  }
+
+  .remove-btn {
+    height: 25px;
+    width: 25px;
+  }
+
+  .counter {
+    width: 83px;
+    .counter-value {
+      width: 30px;
+      height: 25px;
+    }
+    img {
+      height: 15px;
+      width: 15px;
+    }
+  }
+
+  .mat-raised-button {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .cart-item {
+    width: 85%;
+    height: 130px;
+    margin: 8px 0;
+  }
+  .order-wrapper {
+    width: 85%;
+  }
+
+  p {
+    font: 400 8px / 10px Roboto, "Helvetica Neue", sans-serif !important;
+  }
+
+  h2 {
+    font: 400 12px / 10px Roboto, "Helvetica Neue", sans-serif !important;
+  }
+
+  .sub-total {
+    font: 400 10px / 12px Roboto, "Helvetica Neue", sans-serif !important;
+  }
+
+  .img-wrapper {
+    img {
+      height: 60px;
+      width: 60px;
+    }
+    p {
+      max-width: 90px;
+    }
+  }
+
+  .counter span {
+    font-size: 12px;
+  }
+
+  .mat-raised-button {
+    font-size: 10px;
+  }
+
+  .order-wrapper {
+    padding: 10px;
+    h2 {
+      margin: 0 5px;
+    }
+    button {
+      margin: 0px 10px;
+    }
+  }
+
+  .remove-btn-wrapper {
+    height: 104%;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .img-wrapper {
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  .counter span {
+    font-size: 10px;
+  }
+
+  .remove-btn {
+    height: 20px;
+    width: 20px;
+  }
+
+  .counter {
+    width: 70px;
+    .counter-value {
+      width: 25px;
+      height: 20px;
+    }
+    img {
+      height: 12px;
+      width: 12px;
+    }
+  }
+
+  .cart-item {
+    height: 110px;
+  }
+
+  .order-wrapper {
+    height: 80px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .mat-raised-button {
+    padding: 0;
+    line-height: 24px;
+  }
+
+  .cart-item {
+    height: 100px;
+    margin: 6px 0;
+  }
+
+  .order-wrapper {
+    height: 70px;
+  }
+
+  .img-wrapper {
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  .counter span {
+    font-size: 9px;
+  }
+
+  .remove-btn {
+    height: 16px;
+    width: 16px;
+  }
+
+  .counter {
+    width: 60px;
+    .counter-value {
+      width: 22px;
+      height: 18px;
+    }
+    img {
+      height: 10px;
+      width: 10px;
+    }
+  }
+
+  h2 {
+    font: 400 8px / 10px Roboto, "Helvetica Neue", sans-serif !important;
+  }
+}
