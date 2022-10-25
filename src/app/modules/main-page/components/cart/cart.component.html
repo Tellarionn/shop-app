@@ -2,7 +2,7 @@
   <div class="cart-item" *ngFor="let item of items | async">
     <div class="img-wrapper">
       <img
-        src="{{ item.image }}"
+        [src]="item.image"
         width="150px"
         height="150px"
         alt="Item Image"

@@ -14,6 +14,10 @@ export class CartComponent implements OnInit {
   isCartEmpty!: Observable<number>;
   randomOrderNumber!: number | null;
 
+  public get total(): number {
+    return this.cartService.getTotal;
+  }
+
   constructor(
     private cartService: CartService,
     public modalService: ModalService
@@ -26,33 +30,29 @@ export class CartComponent implements OnInit {
     this.randomOrderNumber = this.getRandomNumber();
   }
 
-  clearCart(): void {
+  public clearCart(): void {
     this.cartService.clearCart();
   }
 
-  removeFromCart(item: IProduct): void {
+  public removeFromCart(item: IProduct): void {
     this.cartService.removeItem(item);
   }
 
-  get total(): number {
-    return this.cartService.getTotal;
-  }
-
-  increment(item: IProduct) {
+  public increment(item: IProduct):void {
     this.cartService.increment(item);
     this.cartService.saveCart();
   }
 
-  decrement(item: IProduct) {
+  public decrement(item: IProduct):void {
     this.cartService.decrement(item);
     this.cartService.saveCart();
   }
 
-  getSubTotal(item: IProduct): number {
+  public getSubTotal(item: IProduct): number {
     return item.price * item.qty!;
   }
 
-  getRandomNumber(): number {
+  public getRandomNumber(): number {
     return Math.floor(Math.random() * (200 - 150)) + 150;
   }
 }

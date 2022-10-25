@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { Observable, pipe, take, tap } from 'rxjs';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductsService } from 'src/app/shared/services/products.service';
@@ -11,10 +11,10 @@ import { ProductsService } from 'src/app/shared/services/products.service';
   styleUrls: ['./product-deteails.component.scss'],
 })
 export class ProductDeteailsComponent implements OnInit {
-  product!: Observable<IProduct>;
-  id!: number;
-  counter: number = 1;
-  progressBar: boolean = true;
+  public product!: Observable<IProduct>;
+  public id!: number;
+  public counter: number = 1;
+  public progressBar: boolean = true;
 
   constructor(
     private productService: ProductsService,
@@ -24,25 +24,25 @@ export class ProductDeteailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.loadCart();
-    this.activatedRoute.params.subscribe(
-      (params) => (this.id = params?.['id'])
-    );
+    this.activatedRoute.params
+      .pipe(take(1))
+      .subscribe((params) => (this.id = params?.['id']));
     this.product = this.productService
       .getOneProduct(this.id)
       .pipe(tap(() => (this.progressBar = false)));
   }
 
-  addToCart(item: IProduct): void {
+  public addToCart(item: IProduct): void {
     if (!this.cartService.itemInCart(item)) {
       this.cartService.addToCart(item);
     }
   }
 
-  itemInCart(item: IProduct): boolean {
+  public itemInCart(item: IProduct): boolean {
     return this.cartService.itemInCart(item);
   }
 
-  removeFromCart(item: IProduct): void {
+  public removeFromCart(item: IProduct): void {
     this.cartService.removeItem(item);
   }
 }

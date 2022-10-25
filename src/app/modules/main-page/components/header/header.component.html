@@ -1,6 +1,6 @@
 <mat-toolbar>
   <img
-    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6ypvWIqhLICPpIKyGlA_5z1Ev5I7n-IEWGg&usqp=CAU"
+    src="assets/imgs/logo.png"
     height="50px"
     width="150px"
     alt="Shop-logo"
@@ -37,10 +37,13 @@
       PRODUCTS
     </button>
     <button
-      class="custom-btn btn-10"
+      class="custom-btn btn-10 cart-btn"
       routerLink="./cart"
       routerLinkActive="active"
     >
+      <div class="cart-counter" *ngIf="isCartEmpty | async">
+        {{ cartCounter | async }}
+      </div>
       CART
     </button>
   </div>

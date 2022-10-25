@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { takeUntil } from 'rxjs';
+import { Observable, takeUntil } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductsComponent } from '../products/products.component';
 
 @Component({
@@ -8,12 +9,19 @@ import { ProductsComponent } from '../products/products.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+export class HeaderComponent {
+  public cartCounter = this.isCartEmpty;
 
-  ngOnInit(): void {}
+  public get isCartEmpty(): Observable<number> {
+    return this.cartService.getCartLength;
+  }
 
-  logout() {
+  constructor(
+    private authService: AuthService,
+    public cartService: CartService
+  ) {}
+
+  public logout() {
     this.authService.logout();
   }
 }

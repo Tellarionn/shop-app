@@ -10,8 +10,8 @@ import { ModalService } from 'src/app/shared/services/modal.service';
 export class ModalComponent {
   @Input() public total!: number;
   @Input() public randomOrderNumber!: number | null;
-  payToggle: boolean = false;
-  orderForm!: FormGroup;
+  public payToggle: boolean = false;
+  public orderForm!: FormGroup;
 
   constructor(
     public modalService: ModalService,

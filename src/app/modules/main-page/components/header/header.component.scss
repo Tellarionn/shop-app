@@ -74,7 +74,6 @@
 .btn-15 {
   background: #000;
   color: #fff;
-
   z-index: 1;
 }
 .btn-15:after {
@@ -106,6 +105,19 @@
 .mat-button,
 .burger {
   display: none;
+}
+
+.cart-counter {
+  background-color: rgb(255, 0, 0);
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  right: 25px;
+  width: 18px;
+  display: flex;
+  height: 18px;
+  justify-content: center;
 }
 
 // burger

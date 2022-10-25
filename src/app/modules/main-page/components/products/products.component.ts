@@ -11,10 +11,10 @@ import { ProductsService } from 'src/app/shared/services/products.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  productsList!: Observable<IProduct[]>;
-  hideBtn: boolean = false;
-  progressBar: boolean = true;
-  term: string = '';
+  public productsList!: Observable<IProduct[]>;
+  public hideBtn: boolean = false;
+  public progressBar: boolean = true;
+  public term: string = '';
 
   constructor(
     private productsService: ProductsService,
@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit {
       .getTenProducts()
       .pipe(tap(() => ((this.progressBar = false), (this.hideBtn = true))));
   }
-  showMore() {
+  public showMore() {
     this.progressBar = true;
     this.hideBtn = !this.hideBtn;
     this.productsList = this.productsService
@@ -36,17 +36,17 @@ export class ProductsComponent implements OnInit {
       .pipe(tap(() => (this.progressBar = false)));
   }
 
-  addToCart(item: IProduct): void {
+  public addToCart(item: IProduct): void {
     if (!this.cartService.itemInCart(item)) {
       this.cartService.addToCart(item);
     }
   }
 
-  itemInCart(item: IProduct): boolean {
+  public itemInCart(item: IProduct): boolean {
     return this.cartService.itemInCart(item);
   }
 
-  removeFromCart(item: IProduct): void {
+  public removeFromCart(item: IProduct): void {
     this.cartService.removeItem(item);
   }
 }

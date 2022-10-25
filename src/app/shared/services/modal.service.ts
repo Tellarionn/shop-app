@@ -5,13 +5,14 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ModalService {
-  isVisible$ = new BehaviorSubject<boolean>(false);
+  private isVisible = new BehaviorSubject<boolean>(false);
+  public isVisible$ = this.isVisible.asObservable();
 
-  open(): void {
-    this.isVisible$.next(true);
+  public open(): void {
+    this.isVisible.next(true);
   }
 
-  close(): void {
-    this.isVisible$.next(false);
+  public close(): void {
+    this.isVisible.next(false);
   }
 }

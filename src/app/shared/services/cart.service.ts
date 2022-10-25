@@ -19,11 +19,11 @@ export class CartService {
     return this.items.value;
   }
 
-  get getCartLength(): Observable<number> {
+  public get getCartLength(): Observable<number> {
     return this.items$.pipe(map((items) => items.length));
   }
 
-  get getTotal(): number {
+  public get getTotal(): number {
     return this.items.value.reduce(
       (sum, x) => ({
         qty: 1,
@@ -33,18 +33,18 @@ export class CartService {
     ).variationCost;
   }
 
-  loadCart(): void {
+  public loadCart(): void {
     this.items.next(JSON.parse(localStorage.getItem('cart_items') || '[]'));
   }
 
-  addToCart(addedItem: IProduct): void {
+  public addToCart(addedItem: IProduct): void {
     addedItem.qty = 1;
     const currentValue = this.items.value;
     this.items.next([...currentValue, addedItem]);
     this.saveCart();
   }
 
-  removeItem(item: IProduct): void {
+  public removeItem(item: IProduct): void {
     const index = this.items.value.findIndex((o) => o.id === item.id);
     if (index > -1) {
       this.items.value.splice(index, 1);
@@ -53,27 +53,28 @@ export class CartService {
         this.items.next([]);
       }
       this.saveCart();
+      this.loadCart();
     }
   }
 
-  saveCart(): void {
+  public saveCart(): void {
     localStorage.setItem('cart_items', JSON.stringify(this.items.value));
   }
 
-  clearCart(): void {
+  public clearCart(): void {
     this.items.next([]);
     localStorage.removeItem('cart_items');
   }
 
-  itemInCart(item: IProduct): boolean {
+  public itemInCart(item: IProduct): boolean {
     return this.items.value.findIndex((o) => o.id === item.id) > -1;
   }
 
-  increment(item: IProduct): void {
+  public increment(item: IProduct): void {
     item.qty!++;
   }
 
-  decrement(item: IProduct): void {
+  public decrement(item: IProduct): void {
     if (item.qty! > 1) {
       item.qty!--;
     } else item.qty! = 1;

@@ -22,7 +22,7 @@ import { ErrorService } from './error.service';
 export class ProductsService {
   constructor(private http: HttpClient, private errorService: ErrorService) {}
 
-  getTenProducts(): Observable<IProduct[]> {
+  public getTenProducts(): Observable<IProduct[]> {
     const params = new HttpParams().set('limit', '10');
 
     return this.http
@@ -42,10 +42,8 @@ export class ProductsService {
       .pipe(catchError(this.errorHandler.bind(this)));
   }
 
-  errorHandler(error: HttpErrorResponse) {
+  private errorHandler(error: HttpErrorResponse) {
     this.errorService.handle(error.message);
     return throwError(() => error.message);
   }
-
-  
 }
