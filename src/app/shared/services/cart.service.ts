@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
   BehaviorSubject,
-  isEmpty,
   map,
   Observable,
-  of as observableOf,
 } from 'rxjs';
 import { IProduct } from '../interfaces/product';
 
@@ -15,12 +13,16 @@ export class CartService {
   private readonly items = new BehaviorSubject<IProduct[]>([]);
   public items$ = this.items.asObservable();
 
-  get getItems(): IProduct[] {
+  public get getItems(): IProduct[] {
     return this.items.value;
   }
 
   public get getCartLength(): Observable<number> {
     return this.items$.pipe(map((items) => items.length));
+  }
+
+  public get isCartEmpty():Observable<boolean> {
+    return this.items$.pipe(map((items) => items.length? true : false))
   }
 
   public get getTotal(): number {
@@ -57,6 +59,11 @@ export class CartService {
     }
   }
 
+
+  public updateCart(products: IProduct[]): void {
+    this.items.next(products);
+  }
+
   public saveCart(): void {
     localStorage.setItem('cart_items', JSON.stringify(this.items.value));
   }
@@ -71,7 +78,17 @@ export class CartService {
   }
 
   public increment(item: IProduct): void {
-    item.qty!++;
+    const products = this.items.value.map((prod) => {
+      if (prod.id === item.id) {
+        return {
+          ...prod,
+          qty: (prod.qty ?? 0) + 1,
+        }
+      } else {
+        return prod;
+      }
+    });
+    this.updateCart(products);
   }
 
   public decrement(item: IProduct): void {

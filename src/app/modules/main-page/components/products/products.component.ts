@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable, tap } from 'rxjs';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/shared/services/cart.service';
@@ -18,7 +17,6 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private formBuilder: FormBuilder,
     private cartService: CartService
   ) {}
 

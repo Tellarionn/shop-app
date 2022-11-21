@@ -6,11 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 import {
   catchError,
-  delay,
-  filter,
   Observable,
-  retry,
-  tap,
   throwError,
 } from 'rxjs';
 import { IProduct } from '../interfaces/product';

@@ -9,7 +9,7 @@ export class ErrorService {
 
   constructor() {}
 
-  handle(message: string) {
+  public handle(message: string) {
     this.error.next(message);
   }
 }

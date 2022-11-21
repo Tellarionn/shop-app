@@ -9,19 +9,19 @@ import { IUser } from '../interfaces/user';
 export class AuthService {
   constructor(private router: Router) {}
 
-  setToken(token: string) {
+  public setToken(token: string):void {
     localStorage.setItem('token', token);
   }
 
-  getToken() {
+  public getToken():string | null {
     return localStorage.getItem('token');
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.getToken() !== null;
   }
 
-  login(userInfo: IUser): Observable<string | boolean> {
+  public login(userInfo: IUser): Observable<string | boolean> {
     if (
       userInfo.email === 'admin@gmail.com' &&
       userInfo.password === 'admin123'
@@ -32,7 +32,7 @@ export class AuthService {
     return throwError(() => new Error('Wrong login or password'));
   }
 
-  logout() {
+  public logout():void {
     this.router.navigate(['login']);
   }
 }

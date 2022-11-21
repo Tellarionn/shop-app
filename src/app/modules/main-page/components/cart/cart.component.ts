@@ -11,7 +11,7 @@ import { ModalService } from 'src/app/shared/services/modal.service';
 })
 export class CartComponent implements OnInit {
   items!: Observable<IProduct[]>;
-  isCartEmpty!: Observable<number>;
+  isCartEmpty!: Observable<boolean>;
   randomOrderNumber!: number | null;
 
   public get total(): number {
@@ -26,7 +26,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.loadCart();
     this.items = this.cartService.items$;
-    this.isCartEmpty = this.cartService.getCartLength;
+    this.isCartEmpty = this.cartService.isCartEmpty;
     this.randomOrderNumber = this.getRandomNumber();
   }
 
