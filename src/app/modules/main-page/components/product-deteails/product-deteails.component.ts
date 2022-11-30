@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, pipe, take, tap } from 'rxjs';
+import { filter, map, Observable, switchMap, take, tap } from 'rxjs';
 import { IProduct } from 'src/app/shared/interfaces/product';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductsService } from 'src/app/shared/services/products.service';
@@ -24,12 +24,15 @@ export class ProductDeteailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.loadCart();
-    this.activatedRoute.params
-      .pipe(take(1))
-      .subscribe((params) => (this.id = params?.['id']));
-    this.product = this.productService
-      .getOneProduct(this.id)
-      .pipe(tap(() => (this.progressBar = false)));
+
+    this.product = this.activatedRoute.params.pipe(
+      filter((params) => !!params['id']),
+      map((params) => params['id'] as number),
+      switchMap((id) => this.productService.getOneProduct(id).pipe(
+        tap(() => this.progressBar = false)
+      )),
+      take(1),
+    );
   }
 
   public addToCart(item: IProduct): void {

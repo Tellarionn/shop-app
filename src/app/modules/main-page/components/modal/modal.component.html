@@ -1,11 +1,11 @@
 <div class="wrapper">
-  <div class="modal-wrapper" (click)="modalService.close()"></div>
+  <div class="modal-wrapper" (click)="close()"></div>
   <form [formGroup]="orderForm" class="form-wrapper">
     <div class="header-modal-wrapper">
       <p>Your order is {{ randomOrderNumber }}</p>
-      <button class="close-modal" (click)="modalService.close()">Х</button>
+      <button class="close-modal" (click)="close()">Х</button>
     </div>
-    <mat-form-field class="example-full-width">
+    <mat-form-field >
       <input
         matInput
         formControlName="userName"
@@ -13,7 +13,7 @@
         placeholder="Name"
       />
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <input
         matInput
         formControlName="userLastName"
@@ -21,7 +21,7 @@
         placeholder="Last Name"
       />
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <input
         matInput
         formControlName="userPhone"
@@ -29,7 +29,7 @@
         placeholder="Phone"
       />
     </mat-form-field>
-    <mat-form-field class="example-full-width">
+    <mat-form-field>
       <input
         matInput
         formControlName="userAddress"
@@ -40,7 +40,7 @@
     <mat-radio-group aria-label="Select an option">
       <mat-radio-button value="1">Payment upon receipt</mat-radio-button>
       <mat-radio-button value="2" #payRadio>Pay now</mat-radio-button>
-      <mat-form-field *ngIf="payRadio.checked" class="example-full-width">
+      <mat-form-field *ngIf="payRadio.checked">
         <input
           matInput
           formControlName="userCard"

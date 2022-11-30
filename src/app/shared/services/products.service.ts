@@ -16,7 +16,10 @@ import { ErrorService } from './error.service';
   providedIn: 'root',
 })
 export class ProductsService {
-  constructor(private http: HttpClient, private errorService: ErrorService) {}
+  constructor(
+    private http: HttpClient,
+    private errorService: ErrorService
+    ) {}
 
   public getTenProducts(): Observable<IProduct[]> {
     const params = new HttpParams().set('limit', '10');

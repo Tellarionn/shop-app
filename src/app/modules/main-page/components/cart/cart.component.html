@@ -1,24 +1,19 @@
 <div class="cart-wrapper">
   <div class="cart-item" *ngFor="let item of items | async">
     <div class="img-wrapper">
-      <img
-        [src]="item.image"
-        width="150px"
-        height="150px"
-        alt="Item Image"
-      />
+      <img [src]="item.image" class="item-img" alt="Item Image"/>
       <p>{{ item.title }}</p>
     </div>
     <div class="counter-wrapper">
       <div class="counter">
         <button (click)="decrement(item)">
-          <img src="assets/imgs/minus.png" width="22px" height="22px" alt="" />
+          <img src="assets/imgs/minus.png" class="minus-img" alt="minus" />
         </button>
         <div class="counter-value">
           <span> {{ item.qty }}</span>
         </div>
         <button (click)="increment(item)">
-          <img src="assets/imgs/plus.png" width="22px" height="22px" alt="" />
+          <img src="assets/imgs/plus.png" class="plus-img" alt="plus" />
         </button>
       </div>
     </div>

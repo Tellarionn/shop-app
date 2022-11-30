@@ -25,6 +25,10 @@ ul li {
   background-color: white;
   padding: 1rem;
   border-radius: 5%;
+  img {
+    height: 400px;
+    width: 400px;
+  }
 }
 
 .check-mark {
@@ -54,6 +58,10 @@ ul li {
   margin-top: 0.5rem;
   display: flex;
   align-items: center;
+  .check-mark-img {
+    height: 17px;
+    width: 17px;
+  }
 }
 
 .counter button {
@@ -63,6 +71,10 @@ ul li {
 .mat-progress-bar {
   position: fixed;
   margin-top: 65px;
+}
+
+.bold {
+  font-weight: 600;
 }
 
 //Media queries
@@ -75,7 +87,7 @@ ul li {
     flex-direction: column;
     margin-top: 130px;
   }
-  .img-wrapper img {
+  .img-wrapper .product-img {
     width: 250px;
     height: 250px;
   }
@@ -86,7 +98,7 @@ ul li {
 }
 
 @media only screen and (max-width: 480px) {
-  .img-wrapper img {
+  .img-wrapper .product-img {
     width: 150px;
     height: 150px;
   }
@@ -102,7 +114,7 @@ ul li {
 }
 
 @media only screen and (max-width: 350px) {
-  .img-wrapper img {
+  .img-wrapper .product-img {
     width: 120px;
     height: 120px;
   }

@@ -24,6 +24,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  public submitLogin() {
+    this.authService.login(this.loginForm.value).subscribe({
+      next: () => this.router.navigate(['main-page/home']),
+      error: (err) => alert(err.message),
+    });
+  }
+
   private createForm() {
     this.loginForm = this.formbuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,13 +41,6 @@ export class LoginComponent implements OnInit {
           Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/),
         ],
       ],
-    });
-  }
-
-  public submitLogin() {
-    this.authService.login(this.loginForm.value).subscribe({
-      next: () => this.router.navigate(['main-page/home']),
-      error: (err) => alert(err.message),
     });
   }
 }

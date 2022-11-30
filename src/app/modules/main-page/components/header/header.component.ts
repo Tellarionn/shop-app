@@ -1,27 +1,31 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Observable, takeUntil } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CartService } from 'src/app/shared/services/cart.service';
-import { ProductsComponent } from '../products/products.component';
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   public cartCounter = this.isCartEmpty;
-
-  public get isCartEmpty(): Observable<number> {
-    return this.cartService.getCartLength;
-  }
 
   constructor(
     private authService: AuthService,
     public cartService: CartService
   ) {}
 
-  public logout() {
+  ngOnInit(): void {
+    this.cartService.loadCart()
+  }
+
+  public get isCartEmpty(): Observable<number> {
+    return this.cartService.getCartLength;
+  }
+
+  public logout():void {
     this.authService.logout();
   }
 }

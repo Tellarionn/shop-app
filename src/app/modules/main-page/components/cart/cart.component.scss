@@ -26,6 +26,10 @@
     max-width: 180px;
     margin-left: 12px;
   }
+  .item-img {
+    height: 150px;
+    width: 150px;
+  }
 }
 
 .counter-wrapper {
@@ -42,6 +46,11 @@
 
 .sub-total {
   width: 80px;
+}
+
+.minus-img, .plus-img {
+  width: 22px;
+  height: 22px;
 }
 
 .counter {
@@ -142,7 +151,7 @@
     width: 70%;
   }
 
-  .img-wrapper img {
+  .img-wrapper .item-img {
     height: 100px;
     width: 100px;
   }
@@ -166,7 +175,7 @@
       width: 30px;
       height: 25px;
     }
-    img {
+    .plus-img, .minus-img {
       height: 15px;
       width: 15px;
     }
@@ -200,7 +209,7 @@
   }
 
   .img-wrapper {
-    img {
+    .item-img {
       height: 60px;
       width: 60px;
     }
@@ -234,7 +243,7 @@
 
 @media only screen and (max-width: 375px) {
   .img-wrapper {
-    img {
+    .item-img {
       height: 50px;
       width: 50px;
     }
@@ -255,9 +264,9 @@
       width: 25px;
       height: 20px;
     }
-    img {
-      height: 12px;
-      width: 12px;
+    .plus-img, .minus-img {
+      height: 15px;
+      width: 15px;
     }
   }
 
@@ -267,6 +276,14 @@
 
   .order-wrapper {
     height: 80px;
+  }
+
+  .empty-cart {
+    max-width: 95%;
+    img {
+    height: 300px;
+    width: 300px;
+    }
   }
 }
 
@@ -286,7 +303,7 @@
   }
 
   .img-wrapper {
-    img {
+    .item-img {
       height: 40px;
       width: 40px;
     }
@@ -307,9 +324,9 @@
       width: 22px;
       height: 18px;
     }
-    img {
-      height: 10px;
-      width: 10px;
+    .plus-img, .minus-img {
+      height: 15px;
+      width: 15px;
     }
   }
 

@@ -14,10 +14,10 @@ export class ModalComponent {
   public orderForm!: FormGroup;
 
   constructor(
-    public modalService: ModalService,
-    private formBuilder: FormBuilder
+    private readonly modalService: ModalService,
+    private readonly formBuilder: FormBuilder
   ) {
-    this.orderForm = formBuilder.group({
+    this.orderForm = this.formBuilder.group({
       userName: [
         '',
         [
@@ -40,5 +40,9 @@ export class ModalComponent {
 
   public buy(): void {
     console.log(this.orderForm.value);
+  }
+
+  public close():void {
+    this.modalService.close()
   }
 }

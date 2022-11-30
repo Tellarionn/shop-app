@@ -5,22 +5,22 @@
 ></mat-progress-bar>
 <div class="wrapper" *ngIf="product | async as product">
   <div class="img-wrapper">
-    <img src="{{ product.image }}" width="400px" height="400px" alt="" />
-    <b>Rate: {{ product.rating.rate }}</b>
+    <img src="{{ product.image }}" class="product-img" alt="product image" />
+    <span class="bold">Rate: {{ product.rating.rate }}</span>
   </div>
   <div class="product-info-wrapper">
     <div>
       <h1>{{ product.title }}</h1>
       <p>
-        <b class="check-mark">✓</b> in stock {{ product.rating.count }} pieces
+        <span class="check-mark bold">✓</span> in stock {{ product.rating.count }} pieces
       </p>
-      <b> Category:</b> {{ product.category | titlecase }}
+      <span class="bold"> Category:</span> {{ product.category | titlecase }}
     </div>
     <div>
-      <p><b> Description:</b> {{ product.description }}</p>
+      <span class="bold"> Description:</span> {{ product.description }}
     </div>
     <div>
-      <b>Price: {{ product.price * counter | currency }}</b>
+      <span class="bold">Price: {{ product.price * counter | currency }}</span>
       <div class="buy-wrapper">
         <button
           mat-raised-button
@@ -36,12 +36,7 @@
           *ngIf="itemInCart(product)"
           disabled
         >
-          <img
-            src="assets/imgs/check-mark.png"
-            width="17px"
-            height="17px"
-            alt="Check Mark"
-          />
+          <img src="assets/imgs/check-mark.png" class="check-mark-img" alt="Check Mark"/>
           In cart
         </button>
       </div>

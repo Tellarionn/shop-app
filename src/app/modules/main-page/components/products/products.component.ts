@@ -21,7 +21,6 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cartService.loadCart();
     this.productsList = this.productsService
       .getTenProducts()
       .pipe(tap(() => ((this.progressBar = false), (this.hideBtn = true))));

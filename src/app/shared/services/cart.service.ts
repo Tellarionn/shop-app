@@ -21,7 +21,7 @@ export class CartService {
     return this.items$.pipe(map((items) => items.length));
   }
 
-  public get isCartEmpty():Observable<boolean> {
+  public get isCartEmpty(): Observable<boolean> {
     return this.items$.pipe(map((items) => items.length? true : false))
   }
 
@@ -47,16 +47,13 @@ export class CartService {
   }
 
   public removeItem(item: IProduct): void {
-    const index = this.items.value.findIndex((o) => o.id === item.id);
-    if (index > -1) {
-      this.items.value.splice(index, 1);
-      if (this.items.value.length === 0) {
-        localStorage.removeItem('cart_items');
-        this.items.next([]);
-      }
-      this.saveCart();
-      this.loadCart();
+    const result = this.items.value.filter(p => p.id !== item.id);
+    if (!this.items.value.length) {
+      this.clearCart();
+    } else {
+      this.updateCart(result);
     }
+    this.saveCart();
   }
 
 
@@ -78,22 +75,33 @@ export class CartService {
   }
 
   public increment(item: IProduct): void {
-    const products = this.items.value.map((prod) => {
-      if (prod.id === item.id) {
+    const products = this.items.value.map((product) => {
+      if (product.id === item.id) {
         return {
-          ...prod,
-          qty: (prod.qty ?? 0) + 1,
+          ...product,
+          qty: (product.qty ?? 0) + 1,
         }
       } else {
-        return prod;
+        return product;
       }
     });
     this.updateCart(products);
   }
 
   public decrement(item: IProduct): void {
-    if (item.qty! > 1) {
-      item.qty!--;
-    } else item.qty! = 1;
+    const products = this.items.value.map((product) => {
+      if (product.id === item.id) {
+        if (product.qty === 1) {
+           return product;
+        }
+        return {
+          ...product,
+          qty: (product.qty ?? 0) - 1,
+        }
+      } else {
+        return product;
+      }
+    });
+    this.updateCart(products);
   }
 }
